@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha",
     "migrate": "./node_modules/.bin/node-pg-migrate up"
   },
@@ -13,8 +14,8 @@
     "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
-    "config": "^1.29.2",
     "crypto-js": "^3.1.9-1",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "node-pg-migrate": "^2.17.0",
     "pg": "^7.4.1",

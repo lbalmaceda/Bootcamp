@@ -1,5 +1,5 @@
+require('dotenv').config();
 const express = require('express');
-const config = require('config');
 const bodyParser = require('body-parser');
 const http = require('http');
 const enableDestroy = require('server-destroy');
@@ -20,10 +20,10 @@ function start(callback) {
       console.error(err);
       return process.exit(1);
     }
-    console.log(`listening http://localhost:${config.get('port')}`);
+    console.log(`listening http://localhost:${process.env.PORT}`);
   };
 
-  server = http.createServer(app).listen(config.get('port'), callback);
+  server = http.createServer(app).listen(process.env.PORT, callback);
 
   enableDestroy(server);
 }
