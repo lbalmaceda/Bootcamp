@@ -1,8 +1,14 @@
 require('dotenv').config();
 
+const defaults = {
+  api: {
+    port: 3000
+  }
+};
+
 module.exports = {
   api: {
-    port: process.env.PORT
+    port: process.env.PORT || defaults.api.port
   },
   db: {
     user: process.env.PGUSER,
