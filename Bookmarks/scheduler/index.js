@@ -1,6 +1,6 @@
 require('dotenv').config();
 const {promisify} = require('util');
-const bookmarks = require('../db/bookmarks.js');
+const bookmarks = require('../lib/db/bookmarks.js');
 
 var q = process.env.RABBIT_QUEUE_NAME;
 var open = require('amqplib').connect(process.env.RABBIT_QUEUE_URL);

@@ -1,18 +1,20 @@
-require('dotenv').config();
+const config = require('./config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const enableDestroy = require('server-destroy');
 
-var server;
+const { port } = config.api;
 
-function start(callback) {
+let server;
+
+function start(port, callback) {
   const app = express();
   const api = require('./lib/api');
   console.log(`Starting server on env ${process.env.NODE_ENV}`);
 
   app.use(bodyParser.json());
-  
+
   api(app);
 
   callback = callback || function (err) {
@@ -20,10 +22,10 @@ function start(callback) {
       console.error(err);
       return process.exit(1);
     }
-    console.log(`listening http://localhost:${process.env.PORT}`);
+    console.log(`listening http://localhost:${port}`);
   };
 
-  server = http.createServer(app).listen(process.env.PORT, callback);
+  server = http.createServer(app).listen(port, callback);
 
   enableDestroy(server);
 }
@@ -38,5 +40,5 @@ module.exports = {
 };
 
 if (require.main === module) {
-  start();
+  start(port);
 }
