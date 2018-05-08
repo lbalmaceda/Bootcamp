@@ -17,7 +17,7 @@ open
                     .then(() => ch.close()))
                 .then(() => conn.close())
   })
-  .catch((e) => console.warn(e));
+  .catch(console.warn);
 
 
 //returns promise
@@ -26,11 +26,11 @@ const updateQueue = (ch) => {
       .then((items) => {
         const promises = items.map((item) => {
           const buffer = new Buffer(JSON.stringify(item));
-          return Promise.resolve(ch.sendToQueue(q, buffer));
+          return Promise.resolve(ch.sendToQueue(q, buffer, {persistent: true}));
         });
 
         return Promise.all(promises)
-                .catch((e) => console.warn(e));
+                .catch(console.warn);
       });
 }
 
