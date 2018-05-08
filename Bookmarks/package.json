@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start:task": "node lib/scheduler/scheduler.js",
-    "start:worker": "node lib/worker/worker.js",
+    "start:task": "node scheduler",
+    "start:worker": "node worker",
     "test": "mocha",
     "migrate": "./node_modules/.bin/node-pg-migrate up"
   },

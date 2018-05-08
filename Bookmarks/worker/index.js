@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const {promisify} = require('util');
-const bookmarks = require('../db/bookmarks.js');
+const bookmarks = require('../lib/db/bookmarks.js');
 
 const q = process.env.RABBIT_QUEUE_NAME;
 const open = require('amqplib').connect(process.env.RABBIT_QUEUE_URL);
