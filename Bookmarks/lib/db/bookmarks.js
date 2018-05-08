@@ -1,12 +1,10 @@
-require('dotenv').config();
+const config = require('../../config');
+
 const { Pool } = require('pg');
-const client = new Pool({
-  "user": process.env.PGUSER,
-  "password": process.env.PGPASSWORD,
-  "host": process.env.PGHOST,
-  "port": process.env.PGPORT,
-  "database": process.env.PGDATABASE
-});
+
+const { user, password, database, host, port } = config.db;
+
+const client = new Pool({ user, password, database, host, port });
 
 const bookmarks = module.exports;
 
@@ -22,7 +20,7 @@ bookmarks.create = function(params, callback) {
   const query = 'INSERT INTO bookmarks(user_id, name, url) values($1, $2, $3) RETURNING id';
   return client.query(query, [params.user_id, params.name, params.url], (err, result) => {
     if (err) callback(err);
-    callback(null, result.rows[0].id);   
+    callback(null, result.rows[0].id);
   });
 };
 
@@ -31,7 +29,7 @@ bookmarks.deleteAll = function(callback) {
   return client.query(query, [], (err, result) => {
     if(err) callback(err);
     callback(null);
-  });  
+  });
 };
 
 bookmarks.updateStatus = function(params, callback) {

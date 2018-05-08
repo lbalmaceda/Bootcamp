@@ -1,6 +1,9 @@
 require('dotenv').config();
 
 module.exports = {
+  api: {
+    port: process.env.PORT
+  },
   db: {
     user: process.env.PGUSER,
     password: process.env.PGPASSWORD,
