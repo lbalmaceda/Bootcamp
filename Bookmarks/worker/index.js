@@ -1,10 +1,8 @@
-require("dotenv").config();
-
+const config = require('config');
 const axios = require("axios");
 const amqp = require("amqplib");
 
-const queueName = process.env.RABBIT_QUEUE_NAME;
-const rabbitURL = process.env.RABBIT_QUEUE_URL;
+const { queueName, url } = config.rabbit;
 
 const main = async (queueName, rabbitURL) => {
   let conn;
@@ -25,7 +23,7 @@ const main = async (queueName, rabbitURL) => {
   }
 };
 
-main(queueName, rabbitURL);
+main(queueName, url);
 
 const processQueue = (ch, queueName) =>
   // We're going to manually ack the item after processing it
