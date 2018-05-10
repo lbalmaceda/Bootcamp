@@ -3,6 +3,9 @@ require('dotenv').config();
 const defaults = {
   api: {
     port: 3000
+  },
+  log: {
+    level: 'debug'
   }
 };
 
@@ -22,6 +25,6 @@ module.exports = {
     url: process.env.RABBIT_QUEUE_URL
   },
   log: {
-    level: process.env.LOG_LEVEL
+    level: process.env.LOG_LEVEL || defaults.log.level
   }
 };
