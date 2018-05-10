@@ -73,7 +73,7 @@ npm run start:worker
 
 ## TODO:
 
-- [ ] Add link checking logic to the worker.
+- [x] Add link checking logic to the worker.
 - [ ] Add `CRON` sample command to the readme
 - [ ] Improve the `API.listAll()` method to query sorting by "last updated" first or add a new method that does this, so it can be called from the scheduler.
 - [ ] Notify the user when a link stops responding.
