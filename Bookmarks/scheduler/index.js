@@ -45,7 +45,7 @@ const updateQueue = async (sendItem, getQueueSize, sendQueueSizeMetric) => {
   logger.info('Bookmarks retrieved!');
 
   logger.info('Sending items...');
-  const promises = items.map((item) => Promise.resolve(sendItem(queueName, item)));
+  const promises = items.map(sendItem);
 
   await Promise.all(promises);
 
