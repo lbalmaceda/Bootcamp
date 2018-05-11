@@ -7,7 +7,7 @@ const publishMetric = (queueSize) => {
   const params = {
     MetricData: [
       {
-        MetricName: 'QUEUE_SIZE',
+        MetricName: 'NICOLUCHO_QUEUE_SIZE',
         Unit: 'None',
         Value: queueSize
       },
@@ -15,12 +15,9 @@ const publishMetric = (queueSize) => {
     Namespace: 'WORKER'
   };
   
-  cw.putMetricData(params).promise()
+  return cw.putMetricData(params).promise()
     .then(() => logger.info("Queue size metric updated"))
-    //.catch((err) => logger.error("Failed to update Queue size metric", err));
-    .catch(console.warn)
+    .catch(console.error);
 }
 
-//module.exports = publishMetric;
-
-publishMetric(10);
+module.exports = {publishMetric};

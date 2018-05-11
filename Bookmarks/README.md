@@ -77,3 +77,4 @@ npm run start:worker
 - [ ] Add `CRON` sample command to the readme
 - [ ] Improve the `API.listAll()` method to query sorting by "last updated" first or add a new method that does this, so it can be called from the scheduler.
 - [ ] Notify the user when a link stops responding.
+- [ ] Separate Queue-Size-Update task from Queue-Items-Updater task.

@@ -1,9 +1,10 @@
 require('dotenv').config();
 const { promisify } = require('util');
-const bookmarks = require('../lib/db/bookmarks.js');
+const bookmarks = require('../lib/db/bookmarks');
 const logger = require('../lib/log/logger');
 const config = require('../config');
 const amqp = require('amqplib');
+const metrics = require('./metrics');
 
 const queueName = config.rabbit.queueName;
 const rabbitURL = config.rabbit.url;
@@ -69,7 +70,7 @@ const itemToBuffer = (item) => new Buffer(JSON.stringify(item));
 
 const buildSendItem = (ch, queueName) => {
   return async (item) => {
-    const itemString = JSON.stringify(item, null, 2);
+    const itemString = JSON.stringify(item);
 
     logger.info(`Sending item:\n${itemString}`);
 
@@ -86,7 +87,7 @@ const buildGetQueueSize = (ch, queueName) => {
 };
 
 const buildSendQueueSizeMetric = () => {
-  return async (metric) => {
-    return Promise.resolve();
+  return async (value) => {
+    return metrics.publishMetric(value);
   }
 };
